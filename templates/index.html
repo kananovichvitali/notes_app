@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список продуктів</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<h1>Наші продукти</h1>
+{% for product in products %}
+    <div class="product-card">
+        <h2 class="product-name">{{ product.name }}</h2>
+        <p class="product-price">Ціна: ${{ product.price }}</p>
+        <p class="product-description">{{ product.description }}</p>
+    </div>
+{% endfor %}
+</body>
+</html>
