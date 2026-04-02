@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мої нотатки</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Список нотаток</h1>
+        <div class="notes-grid">
+            {% for note in notes %}
+                <div class="product-card"> <h2 class="product-name">{{ note.title }}</h2>
+                    <p class="category-badge"><b>Категорія:</b> {{ note.category.title }}</p>
+                    <p class="product-description">{{ note.text }}</p>
+                    {% if note.reminder %}
+                        <p class="price-tag">Нагадати: {{ note.reminder|date:"d.m.Y H:i" }}</p>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>Нотаток поки що немає. Додай їх через shell!</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
