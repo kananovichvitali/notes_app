@@ -1,0 +1,9 @@
+<h1>{{ note.title }}</h1>
+<p><b>Категорія:</b> {{ note.category.title }}</p>
+<p><b>Опис:</b> {{ note.text }}</p>
+<p><small>Нагадування: {{ note.reminder|default:"Не встановлено" }}</small></p>
+
+<hr>
+<a href="{% url 'note_edit' note.pk %}">Редагувати</a> |
+<a href="{% url 'note_delete' note.pk %}" style="color: red;">Видалити</a> |
+<a href="{% url 'note_list' %}">Назад до списку</a>

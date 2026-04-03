@@ -1,0 +1,24 @@
+<h1>Мої нотатки</h1>
+<a href="{% url 'note_create' %}">Створити нову нотатку</a>
+
+<form method="get" style="margin: 20px 0;">
+    <input type="text" name="search" placeholder="Пошук за назвою" value="{{ request.GET.search }}">
+    <select name="category">
+        <option value="">Всі категорії</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.title }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Шукати/Фільтрувати</button>
+</form>
+
+<ul>
+    {% for note in notes %}
+        <li>
+            <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a>
+            ({{ note.category.title }})
+        </li>
+    {% empty %}
+        <p>Нотаток не знайдено.</p>
+    {% endfor %}
+</ul>
