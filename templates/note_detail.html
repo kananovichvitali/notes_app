@@ -1,9 +1,19 @@
-<h1>{{ note.title }}</h1>
-<p><b>Категорія:</b> {{ note.category.title }}</p>
-<p><b>Опис:</b> {{ note.text }}</p>
-<p><small>Нагадування: {{ note.reminder|default:"Не встановлено" }}</small></p>
+{% extends 'base.html' %}
 
-<hr>
-<a href="{% url 'note_edit' note.pk %}">Редагувати</a> |
-<a href="{% url 'note_delete' note.pk %}" style="color: red;">Видалити</a> |
-<a href="{% url 'note_list' %}">Назад до списку</a>
+{% block content %}
+<div class="card mx-auto" style="max-width: 800px;">
+    <div class="card-body">
+        <span class="badge bg-info text-dark mb-2">{{ note.category.title }}</span>
+        <h1 class="card-title">{{ note.title }}</h1>
+        <p class="lead mt-4">{{ note.text }}</p>
+        <hr>
+        <p class="text-muted">Нагадування: {{ note.reminder|default:"Немає" }}</p>
+
+        <div class="mt-4">
+            <a href="{% url 'note_edit' note.pk %}" class="btn btn-warning">Редагувати</a>
+            <a href="{% url 'note_delete' note.pk %}" class="btn btn-danger">Видалити</a>
+            <a href="{% url 'note_list' %}" class="btn btn-light border">Назад</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,24 +1,32 @@
-<h1>Мої нотатки</h1>
-<a href="{% url 'note_create' %}">Створити нову нотатку</a>
+{% extends 'base.html' %}
 
-<form method="get" style="margin: 20px 0;">
-    <input type="text" name="search" placeholder="Пошук за назвою" value="{{ request.GET.search }}">
-    <select name="category">
-        <option value="">Всі категорії</option>
-        {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.title }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Шукати/Фільтрувати</button>
-</form>
+{% block title %}Список нотаток{% endblock %}
 
-<ul>
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Мої нотатки</h1>
+    <form method="get" class="d-flex gap-2">
+        <input type="text" name="search" class="form-control" placeholder="Пошук..." value="{{ request.GET.search }}">
+        <button type="submit" class="btn btn-outline-primary">Знайти</button>
+    </form>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
     {% for note in notes %}
-        <li>
-            <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a>
-            ({{ note.category.title }})
-        </li>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ note.category.title }}</h6>
+                <p class="card-text">{{ note.text|truncatechars:100 }}</p>
+                <a href="{% url 'note_detail' note.pk %}" class="btn btn-sm btn-primary">Читати далі</a>
+            </div>
+        </div>
+    </div>
     {% empty %}
-        <p>Нотаток не знайдено.</p>
+    <div class="col-12 text-center">
+        <p class="text-muted">Нотаток поки немає.</p>
+    </div>
     {% endfor %}
-</ul>
+</div>
+{% endblock %}

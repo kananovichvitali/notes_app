@@ -1,8 +1,27 @@
-<h2>Зберегти нотатку</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зберегти</button>
-</form>
-<hr>
-<a href="{% url 'note_list' %}">Скасувати та повернутися</a>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h2 class="mb-4">{% if form.instance.pk %}Редагувати{% else %}Нова{% endif %} нотатка</h2>
+            <form method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field.errors }}
+                    <div class="form-control-wrapper">
+                        {{ field }}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success w-100">Зберегти</button>
+                <a href="{% url 'note_list' %}" class="btn btn-link w-100 text-secondary mt-2">Скасувати</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

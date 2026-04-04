@@ -6,5 +6,8 @@ class NoteForm(forms.ModelForm):
         model = Note
         fields = ['title', 'text', 'reminder', 'category']
         widgets = {
-            'reminder': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'reminder': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
         }
