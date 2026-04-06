@@ -121,3 +121,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+LOGIN_REDIRECT_URL = 'note_list'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'

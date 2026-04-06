@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     title = models.CharField(max_length=100, verbose_name="Назва категорії")
@@ -12,6 +13,7 @@ class Note(models.Model):
     text = models.TextField(verbose_name="Деталі завдання")
     reminder = models.DateTimeField(null=True, blank=True, verbose_name="Коли виконати (нагадування)")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='notes', verbose_name="Категорія")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notes', verbose_name="Автор")
 
     def __str__(self):
         return self.title
