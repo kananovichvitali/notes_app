@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'notes',
+    'notes.apps.NotesConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,6 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = 'note_list'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
+
+TELEGRAM_BOT_TOKEN = ''
+TELEGRAM_CHANNEL_ID = '@mynotesapp1channel'
