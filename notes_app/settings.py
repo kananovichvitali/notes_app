@@ -126,5 +126,5 @@ LOGIN_REDIRECT_URL = 'note_list'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 
-TELEGRAM_BOT_TOKEN = ''
+TELEGRAM_BOT_TOKEN = '12345:dummy_token'
 TELEGRAM_CHANNEL_ID = '@mynotesapp1channel'

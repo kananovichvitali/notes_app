@@ -13,4 +13,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
     path('logout/', logout_view, name='logout'),
+    path('import/sync/', SyncNoteImportView.as_view(), name='sync_import'),
+    path('import/async/', AsyncNoteImportView.as_view(), name='async_import'),
+    path('import/comparison/', HttpClientComparisonView.as_view(), name='http_comparison'),
 ]
